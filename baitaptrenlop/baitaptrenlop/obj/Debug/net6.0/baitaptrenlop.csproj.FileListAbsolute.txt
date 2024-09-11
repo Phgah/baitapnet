@@ -1,0 +1,15 @@
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/bin/Debug/net6.0/baitaptrenlop
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/bin/Debug/net6.0/baitaptrenlop.deps.json
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/bin/Debug/net6.0/baitaptrenlop.runtimeconfig.json
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/bin/Debug/net6.0/baitaptrenlop.dll
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/bin/Debug/net6.0/baitaptrenlop.pdb
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.csproj.AssemblyReference.cache
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.AssemblyInfoInputs.cache
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.AssemblyInfo.cs
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.csproj.CoreCompileInputs.cache
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.dll
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/refint/baitaptrenlop.dll
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.pdb
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/baitaptrenlop.genruntimeconfig.cache
+/Users/ahnphg/Documents/NET/baitaptrenlop/baitaptrenlop/obj/Debug/net6.0/ref/baitaptrenlop.dll
