@@ -1,0 +1,126 @@
+using System;
+using System.Collections.Generic;
+
+// Lớp SinhVien
+class SinhVien
+{
+    public string HoTen { get; set; } = string.Empty; 
+    public string MSSV { get; set; } = string.Empty;  
+    public double DiemTrungBinh { get; set; }
+
+    // Phương thức nhập thông tin sinh viên
+    public void NhapThongTin()
+    {
+        Console.Write("Nhập họ tên: ");
+        HoTen = Console.ReadLine() ?? string.Empty; 
+
+        Console.Write("Nhập MSSV: ");
+        MSSV = Console.ReadLine() ?? string.Empty; 
+
+        Console.Write("Nhập điểm trung bình: ");
+       
+        if (!double.TryParse(Console.ReadLine(), out double diem))
+        {
+            Console.WriteLine("Điểm trung bình không hợp lệ. Mặc định là 0.");
+            DiemTrungBinh = 0.0;
+        }
+        else
+        {
+            DiemTrungBinh = diem;
+        }
+    }
+
+    // Phương thức hiển thị thông tin sinh viên
+    public void HienThiThongTin()
+    {
+        Console.WriteLine($"Họ tên: {HoTen}, MSSV: {MSSV}, Điểm trung bình: {DiemTrungBinh}");
+    }
+}
+
+// Lớp DanhSachSinhVien
+class DanhSachSinhVien
+{
+    public List<SinhVien> DanhSach { get; set; } = new List<SinhVien>();
+
+    public void ThemSinhVien()
+    {
+        SinhVien sv = new SinhVien();
+        sv.NhapThongTin();
+        DanhSach.Add(sv);
+    }
+
+    public void HienThiDanhSach()
+    {
+        foreach (SinhVien sv in DanhSach)
+        {
+            sv.HienThiThongTin();
+        }
+    }
+
+    public void TimSinhVienTheoMSSV(string? mssv) 
+    {
+        if (string.IsNullOrEmpty(mssv))
+        {
+            Console.WriteLine("MSSV không hợp lệ!");
+            return;
+        }
+
+        SinhVien? sv = DanhSach.Find(s => s.MSSV == mssv);
+        if (sv != null)
+        {
+            sv.HienThiThongTin();
+        }
+        else
+        {
+            Console.WriteLine($"Không tìm thấy sinh viên với MSSV: {mssv}");
+        }
+    }
+
+    public SinhVien? TinhDiemTrungBinhCaoNhat()
+    {
+        if (DanhSach.Count == 0) return null; 
+
+        SinhVien svMax = DanhSach[0];
+        foreach (SinhVien sv in DanhSach)
+        {
+            if (sv.DiemTrungBinh > svMax.DiemTrungBinh)
+            {
+                svMax = sv;
+            }
+        }
+        return svMax;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        DanhSachSinhVien danhSach = new DanhSachSinhVien();
+
+        Console.WriteLine("Nhập thông tin cho ít nhất 3 sinh viên:");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine($"\nNhập thông tin sinh viên thứ {i + 1}:");
+            danhSach.ThemSinhVien();
+        }
+
+        Console.WriteLine("\nDanh sách sinh viên đã nhập:");
+        danhSach.HienThiDanhSach();
+
+        SinhVien? svMax = danhSach.TinhDiemTrungBinhCaoNhat();
+        if (svMax != null)
+        {
+            Console.WriteLine("\nSinh viên có điểm trung bình cao nhất:");
+            svMax.HienThiThongTin();
+        }
+        else
+        {
+            Console.WriteLine("Không có sinh viên trong danh sách.");
+        }
+
+        Console.Write("\nNhập MSSV sinh viên cần tìm: ");
+        string? mssvTimKiem = Console.ReadLine();
+        danhSach.TimSinhVienTheoMSSV(mssvTimKiem);
+    }
+}
