@@ -1,145 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Product
+// Lớp SinhVien
+class SinhVien
 {
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public string Description { get; set; }
-    public int Quantity { get; set; }
+    // Các thuộc tính được khởi tạo với giá trị mặc định để tránh cảnh báo CS8618
+    public string HoTen { get; set; } = string.Empty; // Khởi tạo với giá trị mặc định
+    public string MSSV { get; set; } = string.Empty;  // Khởi tạo với giá trị mặc định
+    public double DiemTrungBinh { get; set; }
 
-    public Product(string name, double price, string description, int quantity)
+    // Phương thức nhập thông tin sinh viên
+    public void NhapThongTin()
     {
-        Name = name;
-        Price = price;
-        Description = description;
-        Quantity = quantity;
-    }
+        Console.Write("Nhập họ tên: ");
+        HoTen = Console.ReadLine() ?? string.Empty; // Đảm bảo không nhận giá trị null
 
-    public virtual void DisplayProductInfo()
-    {
-        Console.WriteLine($"Name: {Name}, Price: {Price:C}, Description: {Description}, Quantity: {Quantity}");
-    }
+        Console.Write("Nhập MSSV: ");
+        MSSV = Console.ReadLine() ?? string.Empty; // Đảm bảo không nhận giá trị null
 
-    public Product CloneWithQuantity(int quantity)
-    {
-        return new Product(Name, Price, Description, quantity);
-    }
-}
-
-public class Electronic : Product
-{
-    public int WarrantyMonths { get; set; }
-
-    public Electronic(string name, double price, string description, int quantity, int warrantyMonths)
-        : base(name, price, description, quantity)
-    {
-        WarrantyMonths = warrantyMonths;
-    }
-
-    public override void DisplayProductInfo()
-    {
-        base.DisplayProductInfo();
-        Console.WriteLine($"Warranty: {WarrantyMonths} months");
-    }
-
-    public new Product CloneWithQuantity(int quantity)
-    {
-        return new Electronic(Name, Price, Description, quantity, WarrantyMonths);
-    }
-}
-
-public class Clothing : Product
-{
-    public string Size { get; set; }
-    public string Color { get; set; }
-
-    public Clothing(string name, double price, string description, int quantity, string size, string color)
-        : base(name, price, description, quantity)
-    {
-        Size = size;
-        Color = color;
-    }
-
-    public override void DisplayProductInfo()
-    {
-        base.DisplayProductInfo();
-        Console.WriteLine($"Size: {Size}, Color: {Color}");
-    }
-
-    public new Product CloneWithQuantity(int quantity)
-    {
-        return new Clothing(Name, Price, Description, quantity, Size, Color);
-    }
-}
-
-public class Food : Product
-{
-    public DateTime ExpirationDate { get; set; }
-
-    public Food(string name, double price, string description, int quantity, DateTime expirationDate)
-        : base(name, price, description, quantity)
-    {
-        ExpirationDate = expirationDate;
-    }
-
-    public override void DisplayProductInfo()
-    {
-        base.DisplayProductInfo();
-        Console.WriteLine($"Expiration Date: {ExpirationDate.ToShortDateString()}");
-    }
-
-    public new Product CloneWithQuantity(int quantity)
-    {
-        return new Food(Name, Price, Description, quantity, ExpirationDate);
-    }
-}
-
-public class ShoppingCart
-{
-    public List<Product> Products { get; set; }
-
-    public ShoppingCart()
-    {
-        Products = new List<Product>();
-    }
-
-    public void AddProduct(Product product)
-    {
-        Products.Add(product);
-        Console.WriteLine($"{product.Name} added to cart.");
-    }
-
-    public void RemoveProduct(Product product)
-    {
-        Products.Remove(product);
-        Console.WriteLine($"{product.Name} removed from cart.");
-    }
-
-    public void DisplayCart()
-    {
-        if (Products.Count == 0)
+        Console.Write("Nhập điểm trung bình: ");
+        // Sử dụng TryParse để kiểm tra giá trị đầu vào và tránh lỗi CS8604
+        if (!double.TryParse(Console.ReadLine(), out double diem))
         {
-            Console.WriteLine("Your cart is empty.");
+            Console.WriteLine("Điểm trung bình không hợp lệ. Mặc định là 0.");
+            DiemTrungBinh = 0.0;
         }
         else
         {
-            Console.WriteLine("Products in your cart:");
-            foreach (var product in Products)
-            {
-                product.DisplayProductInfo();
-            }
+            DiemTrungBinh = diem;
         }
     }
 
-    public double CalculateTotalPrice()
+    // Phương thức hiển thị thông tin sinh viên
+    public void HienThiThongTin()
     {
-        double total = 0;
-        foreach (var product in Products)
+        Console.WriteLine($"Họ tên: {HoTen}, MSSV: {MSSV}, Điểm trung bình: {DiemTrungBinh}");
+    }
+}
+
+// Lớp DanhSachSinhVien
+class DanhSachSinhVien
+{
+    // Sử dụng List<SinhVien> để chứa danh sách sinh viên
+    public List<SinhVien> DanhSach { get; set; } = new List<SinhVien>();
+
+    // Phương thức thêm sinh viên vào danh sách
+    public void ThemSinhVien()
+    {
+        SinhVien sv = new SinhVien();
+        sv.NhapThongTin();
+        DanhSach.Add(sv);
+    }
+
+    // Phương thức hiển thị danh sách sinh viên
+    public void HienThiDanhSach()
+    {
+        foreach (SinhVien sv in DanhSach)
         {
-            total += product.Price * product.Quantity;
+            sv.HienThiThongTin();
         }
-        return total;
+    }
+
+    // Phương thức tìm sinh viên theo MSSV
+    public void TimSinhVienTheoMSSV(string? mssv) // Sử dụng string? để tránh cảnh báo CS8604
+    {
+        if (string.IsNullOrEmpty(mssv))
+        {
+            Console.WriteLine("MSSV không hợp lệ!");
+            return;
+        }
+
+        // Tìm kiếm sinh viên theo MSSV
+        SinhVien? sv = DanhSach.Find(s => s.MSSV == mssv);
+        if (sv != null)
+        {
+            sv.HienThiThongTin();
+        }
+        else
+        {
+            Console.WriteLine($"Không tìm thấy sinh viên với MSSV: {mssv}");
+        }
+    }
+
+    // Phương thức tính sinh viên có điểm trung bình cao nhất
+    public SinhVien? TinhDiemTrungBinhCaoNhat()
+    {
+        if (DanhSach.Count == 0) return null; // Kiểm tra danh sách rỗng để tránh lỗi CS8603
+
+        SinhVien svMax = DanhSach[0];
+        foreach (SinhVien sv in DanhSach)
+        {
+            if (sv.DiemTrungBinh > svMax.DiemTrungBinh)
+            {
+                svMax = sv;
+            }
+        }
+        return svMax;
     }
 }
 
@@ -147,69 +103,34 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Tạo các sản phẩm mẫu cho từng lớp con
-        Electronic asusLaptop = new Electronic("Asus Laptop", 600, "Asus gaming laptop", 1, 24);
-        Electronic sonyHeadphones = new Electronic("Sony Headphones", 200, "Noise cancelling headphones", 1, 6);
-        Electronic magicMouse = new Electronic("Magic mouse", 100, "wireless and rechargeable", 1, 6);
+        DanhSachSinhVien danhSach = new DanhSachSinhVien();
 
-        Clothing nikeTshirt = new Clothing("Nike T-Shirt", 30, "Cotton T-shirt", 2, "L", "Black");
-        Clothing adidasJacket = new Clothing("Adidas Jacket", 120, "Winter jacket", 1, "M", "Blue");
-        Clothing sambaShoes = new Clothing("Samba Shoes", 110, "Cushioned midsole", 1, "39", "White");
-
-        Food banana = new Food("Banana", 1.2, "Fresh bananas", 10, new DateTime(2024, 1, 15));
-        Food milk = new Food("Milk", 2.5, "Organic milk", 5, new DateTime(2024, 2, 1));
-        Food bread = new Food("Bread", 4.5, "Sour bread", 7, new DateTime(2024, 9, 20));
-
-        // Tạo giỏ hàng
-        ShoppingCart cart = new();
-
-        // Danh sách sản phẩm có sẵn
-        List<Product> availableProducts = new List<Product>
+        Console.WriteLine("Nhập thông tin cho ít nhất 3 sinh viên:");
+        for (int i = 0; i < 3; i++)
         {
-            asusLaptop, sonyHeadphones, magicMouse, nikeTshirt, adidasJacket, sambaShoes, banana, milk, bread
-        };
-
-        bool continueShopping = true;
-
-        while (continueShopping)
-        {
-            Console.WriteLine("\nAvailable products:");
-            for (int i = 0; i < availableProducts.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {availableProducts[i].Name} - {availableProducts[i].Price:C}");
-            }
-
-            // Nhập số sản phẩm
-            int productIndex;
-            Console.Write("Enter the number of the product to add to your cart (or 0 to checkout): ");
-            string inputProductIndex = Console.ReadLine();
-
-            if (!int.TryParse(inputProductIndex, out productIndex) || productIndex <= 0 || productIndex > availableProducts.Count)
-            {
-                Console.WriteLine("Invalid input. Please enter a valid product number.");
-                continue;
-            }
-
-            productIndex--;  // Chuyển đổi từ 1-based index sang 0-based index
-
-            // Nhập số lượng
-            int quantity;
-            Console.Write("Enter the quantity: ");
-            string inputQuantity = Console.ReadLine();
-
-            if (!int.TryParse(inputQuantity, out quantity) || quantity <= 0)
-            {
-                Console.WriteLine("Invalid quantity. Please enter a positive number.");
-                continue;
-            }
-
-            Product selectedProduct = availableProducts[productIndex].CloneWithQuantity(quantity);
-            cart.AddProduct(selectedProduct);
-
-            // Hiển thị giỏ hàng và tổng giá trị đơn hàng
-            cart.DisplayCart();
-            double total = cart.CalculateTotalPrice();
-            Console.WriteLine($"\nTotal Price: {total:C}");
+            Console.WriteLine($"\nNhập thông tin sinh viên thứ {i + 1}:");
+            danhSach.ThemSinhVien();
         }
+
+        // Hiển thị danh sách sinh viên
+        Console.WriteLine("\nDanh sách sinh viên đã nhập:");
+        danhSach.HienThiDanhSach();
+
+        // Tìm và hiển thị sinh viên có điểm trung bình cao nhất
+        SinhVien? svMax = danhSach.TinhDiemTrungBinhCaoNhat();
+        if (svMax != null)
+        {
+            Console.WriteLine("\nSinh viên có điểm trung bình cao nhất:");
+            svMax.HienThiThongTin();
+        }
+        else
+        {
+            Console.WriteLine("Không có sinh viên trong danh sách.");
+        }
+
+        // Tìm kiếm sinh viên theo MSSV
+        Console.Write("\nNhập MSSV sinh viên cần tìm: ");
+        string? mssvTimKiem = Console.ReadLine();
+        danhSach.TimSinhVienTheoMSSV(mssvTimKiem);
     }
 }
