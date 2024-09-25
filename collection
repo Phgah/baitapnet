@@ -1,0 +1,120 @@
+using System;
+using System.Collections;
+//Array List
+class Program
+{
+    static void Main()
+    {
+        ArrayList numbers = new ArrayList();
+
+        Console.WriteLine("Nhập các số nguyên (nhập 0 để dừng):");
+
+        while (true)
+        {
+            Console.Write("Nhập số: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int number))
+            {
+                if (number == 0) break;
+                numbers.Add(number);
+            }
+            else
+            {
+                Console.WriteLine("Vui lòng nhập một số nguyên hợp lệ.");
+            }
+        }
+
+        numbers.Sort();
+
+        Console.WriteLine("Danh sách các số theo thứ tự tăng dần:");
+        foreach (int num in numbers)
+        {
+            Console.WriteLine(num);
+        }
+    }
+}
+
+//HashTable
+class Program
+{
+    static void Main()
+    {
+        Hashtable people = new Hashtable();
+
+        Console.WriteLine("Nhập tên và tuổi của nhiều người (nhập '0' để dừng):");
+
+        while (true)
+        {
+            Console.Write("Nhập tên: ");
+            string? name = Console.ReadLine();  
+
+            if (string.IsNullOrEmpty(name))   
+            {
+                Console.WriteLine("Tên không được để trống.");
+                continue;  
+            }
+            if (name.ToLower() == "0") break; 
+
+            Console.Write("Nhập tuổi: ");
+            string? input = Console.ReadLine(); 
+
+            if (int.TryParse(input, out int age))
+            {
+                people.Add(name, age); 
+            }
+            else
+            {
+                Console.WriteLine("Vui lòng nhập một số nguyên hợp lệ cho tuổi.");
+            }
+        }
+
+        Console.WriteLine("Danh sách tên và tuổi:");
+        foreach (DictionaryEntry entry in people)
+        {
+            Console.WriteLine($"Tên: {entry.Key}, Tuổi: {entry.Value}");
+        }
+    }
+}
+
+//Dictionary
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, int> studentGrades = new Dictionary<string, int>();
+
+        Console.WriteLine("Nhập tên và điểm của học sinh (nhập '0' để dừng):");
+
+        while (true)
+        {
+            Console.Write("Nhập tên học sinh: ");
+            string? name = Console.ReadLine();  
+
+            if (string.IsNullOrEmpty(name))  
+            {
+                Console.WriteLine("Tên học sinh không được để trống.");
+                continue; 
+            }
+            if (name.ToLower() == "0") break; 
+
+            Console.Write("Nhập điểm: ");
+            string? input = Console.ReadLine();  
+
+            if (int.TryParse(input, out int grade))
+            {
+                studentGrades.Add(name, grade); 
+            }
+            else
+            {
+                Console.WriteLine("Vui lòng nhập một số nguyên hợp lệ cho điểm.");
+            }
+        }
+
+        Console.WriteLine("Danh sách học sinh và điểm:");
+        foreach (var student in studentGrades)
+        {
+            Console.WriteLine($"Tên: {student.Key}, Điểm: {student.Value}");
+        }
+    }
+}
