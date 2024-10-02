@@ -11,3 +11,6 @@ Hash Table
 <img width="1415" alt="Ảnh màn hình 2024-09-25 lúc 09 15 02" src="https://github.com/user-attachments/assets/71f64256-6269-4cb4-98d1-42cf8b3f3b3c">
 Dictionary
 <img width="1415" alt="Ảnh màn hình 2024-09-25 lúc 09 41 41" src="https://github.com/user-attachments/assets/2cb510e0-765f-4778-9340-78b7eac2a153">
+Lớp trừ tượng và giao diện
+<img width="1440" alt="Ảnh màn hình 2024-10-02 lúc 08 51 41" src="https://github.com/user-attachments/assets/c9e003f2-5ef6-4503-8a40-19ca55b6906f">
+
