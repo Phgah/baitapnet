@@ -1,0 +1,167 @@
+public abstract class Product
+{
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public int Stock { get; set; }
+
+    public Product(string name, decimal price, int stock)
+    {
+        Name = name;
+        Price = price;
+        Stock = stock;
+    }
+
+    public abstract void DisplayProductInfo();
+
+    public void ApplyDiscount(decimal percentage)
+    {
+        Price -= Price * percentage / 100;
+    }
+}
+
+public interface ISellable
+{
+    void Sell(int quantity);
+    bool IsInStock();
+}
+
+public class MobilePhone : Product, ISellable
+{
+    public string Brand { get; set; }
+    public string Model { get; set; }
+
+    public MobilePhone(string name, decimal price, int stock, string brand, string model)
+        : base(name, price, stock)
+    {
+        Brand = brand;
+        Model = model;
+    }
+
+    public override void DisplayProductInfo()
+    {
+        Console.WriteLine($"Mobile Phone: {Name}, Brand: {Brand}, Model: {Model}, Price: {Price:C}, Stock: {Stock}");
+    }
+
+    public void Sell(int quantity)
+    {
+        if (Stock >= quantity)
+        {
+            Stock -= quantity;
+            Console.WriteLine($"{quantity} {Name} sold. Remaining stock: {Stock}");
+        }
+        else
+        {
+            Console.WriteLine($"Not enough stock for {Name}. Only {Stock} left.");
+        }
+    }
+
+    public bool IsInStock()
+    {
+        return Stock > 0;
+    }
+}
+
+public class Laptop : Product, ISellable
+{
+    public string Brand { get; set; }
+    public string Processor { get; set; }
+
+    public Laptop(string name, decimal price, int stock, string brand, string processor)
+        : base(name, price, stock)
+    {
+        Brand = brand;
+        Processor = processor;
+    }
+
+    public override void DisplayProductInfo()
+    {
+        Console.WriteLine($"Laptop: {Name}, Brand: {Brand}, Processor: {Processor}, Price: {Price:C}, Stock: {Stock}");
+    }
+
+    public void Sell(int quantity)
+    {
+        if (Stock >= quantity)
+        {
+            Stock -= quantity;
+            Console.WriteLine($"{quantity} {Name} sold. Remaining stock: {Stock}");
+        }
+        else
+        {
+            Console.WriteLine($"Not enough stock for {Name}. Only {Stock} left.");
+        }
+    }
+
+    public bool IsInStock()
+    {
+        return Stock > 0;
+    }
+}
+
+public class Accessory : Product, ISellable
+{
+    public string Category { get; set; }
+
+    public Accessory(string name, decimal price, int stock, string category)
+        : base(name, price, stock)
+    {
+        Category = category;
+    }
+
+    public override void DisplayProductInfo()
+    {
+        Console.WriteLine($"Accessory: {Name}, Category: {Category}, Price: {Price:C}, Stock: {Stock}");
+    }
+
+    public void Sell(int quantity)
+    {
+        if (Stock >= quantity)
+        {
+            Stock -= quantity;
+            Console.WriteLine($"{quantity} {Name} sold. Remaining stock: {Stock}");
+        }
+        else
+        {
+            Console.WriteLine($"Not enough stock for {Name}. Only {Stock} left.");
+        }
+    }
+
+    public bool IsInStock()
+    {
+        return Stock > 0;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        MobilePhone phone = new MobilePhone("SamsungZ", 1200m, 15, "Samsung", "ZFold");
+        phone.DisplayProductInfo();
+
+        Laptop laptop = new Laptop("MacBook M3 Air", 1500m, 4, "Apple", "M3");
+        laptop.DisplayProductInfo();
+
+        Accessory accessory = new Accessory("Sony wh-1000xm5", 50m, 30, "Headphone");
+        accessory.DisplayProductInfo();
+
+        Console.WriteLine();
+
+        phone.Sell(5);
+        laptop.Sell(3);
+        accessory.Sell(15);
+
+        Console.WriteLine();
+
+        Console.WriteLine($"Phone in stock: {phone.IsInStock()}");
+        Console.WriteLine($"Laptop in stock: {laptop.IsInStock()}");
+        Console.WriteLine($"Accessory in stock: {accessory.IsInStock()}");
+
+        Console.WriteLine();
+
+        phone.ApplyDiscount(10);
+        laptop.ApplyDiscount(15);
+
+        phone.DisplayProductInfo();
+        laptop.DisplayProductInfo();
+    }
+}
