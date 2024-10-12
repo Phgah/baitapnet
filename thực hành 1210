@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+
+// Lớp trừu tượng đại diện cho phương tiện
+public abstract class PhuongTien
+{
+    public string TenPhuongTien { get; set; }
+    public string LoaiNhienLieu { get; set; }
+
+    public PhuongTien(string tenPhuongTien, string loaiNhienLieu)
+    {
+        TenPhuongTien = tenPhuongTien;
+        LoaiNhienLieu = loaiNhienLieu;
+    }
+
+    // Phương thức trừu tượng DiChuyen
+    public abstract void DiChuyen();
+}
+
+// Giao diện chứa thông tin thêm
+public interface IThongTinThem
+{
+    int TocDoToiDa(); // Tốc độ tối đa
+    double MucTieuThuNhienLieu(); // Mức tiêu thụ nhiên liệu
+}
+
+// Lớp XeHoi kế thừa từ PhuongTien và hiện thực giao diện IThongTinThem
+public class XeHoi : PhuongTien, IThongTinThem
+{
+    public XeHoi(string tenPhuongTien, string loaiNhienLieu) 
+        : base(tenPhuongTien, loaiNhienLieu)
+    {
+    }
+
+    // Hiện thực phương thức DiChuyen
+    public override void DiChuyen()
+    {
+        Console.WriteLine($"{TenPhuongTien} di chuyển bằng động cơ sử dụng {LoaiNhienLieu}.");
+    }
+
+    // Hiện thực phương thức từ giao diện IThongTinThem
+    public int TocDoToiDa()
+    {
+        return 220; // Tốc độ tối đa 220 km/h
+    }
+
+    public double MucTieuThuNhienLieu()
+    {
+        return 8.5; // Mức tiêu thụ 8.5 lít/100 km
+    }
+}
+
+// Lớp XeDap kế thừa từ PhuongTien và hiện thực một phần giao diện IThongTinThem
+public class XeDap : PhuongTien, IThongTinThem
+{
+    public XeDap(string tenPhuongTien) 
+        : base(tenPhuongTien, "Không sử dụng nhiên liệu")
+    {
+    }
+
+    // Hiện thực phương thức DiChuyen
+    public override void DiChuyen()
+    {
+        Console.WriteLine($"{TenPhuongTien} di chuyển bằng cách đạp xe.");
+    }
+
+    // Hiện thực phương thức từ giao diện IThongTinThem
+    public int TocDoToiDa()
+    {
+        return 25; // Tốc độ tối đa 25 km/h
+    }
+
+    // Xe đạp không sử dụng nhiên liệu nên không cần hiện thực MucTieuThuNhienLieu
+    public double MucTieuThuNhienLieu()
+    {
+        throw new NotImplementedException("Xe đạp không sử dụng nhiên liệu.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Tạo danh sách các phương tiện
+        List<PhuongTien> danhSachPhuongTien = new List<PhuongTien>
+        {
+            new XeHoi("Toyota Camry", "Xăng"),
+            new XeHoi("Tesla Model S", "Điện"),
+            new XeDap("Xe đạp địa hình")
+        };
+
+        // In ra thông tin chi tiết của từng phương tiện và gọi phương thức DiChuyen
+        foreach (var phuongTien in danhSachPhuongTien)
+        {
+            phuongTien.DiChuyen();
+
+            // Kiểm tra xem phương tiện có hiện thực IThongTinThem không
+            if (phuongTien is IThongTinThem thongTinThem)
+            {
+                Console.WriteLine($"Tốc độ tối đa: {thongTinThem.TocDoToiDa()} km/h");
+
+                // Chỉ hiện thông tin mức tiêu thụ nhiên liệu nếu phương tiện là XeHoi
+                if (phuongTien is XeHoi)
+                {
+                    Console.WriteLine($"Mức tiêu thụ nhiên liệu: {thongTinThem.MucTieuThuNhienLieu()} lít/100km");
+                }
+            }
+
+            Console.WriteLine(); // Dòng trống giữa các phương tiện
+        }
+    }
+}
