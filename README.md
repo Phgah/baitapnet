@@ -13,4 +13,5 @@ Dictionary
 <img width="1415" alt="Ảnh màn hình 2024-09-25 lúc 09 41 41" src="https://github.com/user-attachments/assets/2cb510e0-765f-4778-9340-78b7eac2a153">
 Lớp trừ tượng và giao diện
 <img width="1440" alt="Ảnh màn hình 2024-10-02 lúc 08 51 41" src="https://github.com/user-attachments/assets/c9e003f2-5ef6-4503-8a40-19ca55b6906f">
-
+thực hành ngày 12 tháng 10
+<img width="1440" alt="Ảnh màn hình 2024-10-12 lúc 10 49 10" src="https://github.com/user-attachments/assets/0b16aaee-fcc7-402c-88e8-23641f08adf5">
