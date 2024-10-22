@@ -15,3 +15,8 @@ Lớp trừ tượng và giao diện
 <img width="1440" alt="Ảnh màn hình 2024-10-02 lúc 08 51 41" src="https://github.com/user-attachments/assets/c9e003f2-5ef6-4503-8a40-19ca55b6906f">
 thực hành ngày 12 tháng 10
 <img width="1440" alt="Ảnh màn hình 2024-10-12 lúc 10 49 10" src="https://github.com/user-attachments/assets/0b16aaee-fcc7-402c-88e8-23641f08adf5">
+thực hành 22 tháng 10
+<img width="336" alt="Ảnh màn hình 2024-10-22 lúc 10 03 25" src="https://github.com/user-attachments/assets/19f199b0-9778-4acc-930d-7fdbfcfbc895">
+<img width="358" alt="Ảnh màn hình 2024-10-22 lúc 10 03 43" src="https://github.com/user-attachments/assets/b2dbf17d-a3d8-4c09-af29-ba17defbb194">
+<img width="573" alt="Ảnh màn hình 2024-10-22 lúc 10 03 57" src="https://github.com/user-attachments/assets/c24ee4df-44a7-4e49-b82b-2788976f9799">
+<img width="331" alt="Ảnh màn hình 2024-10-22 lúc 10 05 26" src="https://github.com/user-attachments/assets/5eb49fc6-6353-4c1a-8350-dd32c4acf4ce">
