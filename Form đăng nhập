@@ -1,0 +1,30 @@
+using System;
+using System.Windows.Forms;
+
+namespace LoginApp
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button_Login_Click(object sender, EventArgs e)
+        {
+            if (textBox_Username.Text == "admin" && textBox_Password.Text == "1234")
+            {
+                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập thất bại! Vui lòng kiểm tra lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}
