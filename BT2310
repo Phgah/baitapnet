@@ -1,0 +1,89 @@
+//ClearForm
+private void ClearForm()
+{
+    textBox_MaSP.Text = "";
+    textBox_TenSP.Text = "";
+    textBox_DonGia.Text = "";
+    textBox_HinhAnh.Text = "";
+    textBox_MoTaNgan.Text = "";
+    richTextBox_MoTaChiTiet.Text = "";
+    comboBox_LoaiSP.SelectedIndex = -1;
+}
+//Thêm
+private void button_Them_Click(object sender, EventArgs e)
+{
+    if (!string.IsNullOrWhiteSpace(textBox_MaSP.Text))
+    {
+        dataGridView_SanPham.Rows.Add(
+            textBox_MaSP.Text, 
+            textBox_TenSP.Text, 
+            textBox_DonGia.Text, 
+            textBox_HinhAnh.Text, 
+            textBox_MoTaNgan.Text, 
+            richTextBox_MoTaChiTiet.Text, 
+            comboBox_LoaiSP.SelectedItem.ToString()
+        );
+        ClearForm();
+        MessageBox.Show("Thêm sản phẩm thành công!", "Thông báo");
+    }
+    else
+    {
+        MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Lỗi");
+    }
+}
+//Sửa
+private void button_Sua_Click(object sender, EventArgs e)
+{
+    if (dataGridView_SanPham.SelectedRows.Count > 0)
+    {
+        DataGridViewRow selectedRow = dataGridView_SanPham.SelectedRows[0];
+        selectedRow.Cells["MaSP"].Value = textBox_MaSP.Text;
+        selectedRow.Cells["TenSP"].Value = textBox_TenSP.Text;
+        selectedRow.Cells["DonGia"].Value = textBox_DonGia.Text;
+        selectedRow.Cells["HinhAnh"].Value = textBox_HinhAnh.Text;
+        selectedRow.Cells["MoTaNgan"].Value = textBox_MoTaNgan.Text;
+        selectedRow.Cells["MoTaChiTiet"].Value = richTextBox_MoTaChiTiet.Text;
+        selectedRow.Cells["LoaiSP"].Value = comboBox_LoaiSP.SelectedItem.ToString();
+        
+        ClearForm();
+        MessageBox.Show("Sửa sản phẩm thành công!", "Thông báo");
+    }
+    else
+    {
+        MessageBox.Show("Vui lòng chọn sản phẩm để sửa.", "Lỗi");
+    }
+}
+//Xoá
+private void button_Xoa_Click(object sender, EventArgs e)
+{
+    if (dataGridView_SanPham.SelectedRows.Count > 0)
+    {
+        dataGridView_SanPham.Rows.RemoveAt(dataGridView_SanPham.SelectedRows[0].Index);
+        ClearForm();
+        MessageBox.Show("Xóa sản phẩm thành công!", "Thông báo");
+    }
+    else
+    {
+        MessageBox.Show("Vui lòng chọn sản phẩm để xóa.", "Lỗi");
+    }
+}
+//Hiển thị
+private void dataGridView_SanPham_SelectionChanged(object sender, EventArgs e)
+{
+    if (dataGridView_SanPham.SelectedRows.Count > 0)
+    {
+        DataGridViewRow selectedRow = dataGridView_SanPham.SelectedRows[0];
+        textBox_MaSP.Text = selectedRow.Cells["MaSP"].Value.ToString();
+        textBox_TenSP.Text = selectedRow.Cells["TenSP"].Value.ToString();
+        textBox_DonGia.Text = selectedRow.Cells["DonGia"].Value.ToString();
+        textBox_HinhAnh.Text = selectedRow.Cells["HinhAnh"].Value.ToString();
+        textBox_MoTaNgan.Text = selectedRow.Cells["MoTaNgan"].Value.ToString();
+        richTextBox_MoTaChiTiet.Text = selectedRow.Cells["MoTaChiTiet"].Value.ToString();
+        comboBox_LoaiSP.SelectedItem = selectedRow.Cells["LoaiSP"].Value.ToString();
+    }
+}
+
+
+
+
+
