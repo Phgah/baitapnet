@@ -20,3 +20,5 @@ thực hành 22 tháng 10
 <img width="358" alt="Ảnh màn hình 2024-10-22 lúc 10 03 43" src="https://github.com/user-attachments/assets/b2dbf17d-a3d8-4c09-af29-ba17defbb194">
 <img width="573" alt="Ảnh màn hình 2024-10-22 lúc 10 03 57" src="https://github.com/user-attachments/assets/c24ee4df-44a7-4e49-b82b-2788976f9799">
 <img width="331" alt="Ảnh màn hình 2024-10-22 lúc 10 05 26" src="https://github.com/user-attachments/assets/5eb49fc6-6353-4c1a-8350-dd32c4acf4ce">
+kiểm tra 30 thang 10
+![kt](https://github.com/user-attachments/assets/c33621bb-bb29-4cf5-b83f-67af5e48a53f)
