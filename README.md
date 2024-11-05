@@ -26,3 +26,11 @@ thực hành 22 tháng 10
 kiểm tra 30 thang 10
 
 ![kt](https://github.com/user-attachments/assets/c33621bb-bb29-4cf5-b83f-67af5e48a53f)
+
+
+Thuc hanh 05/11
+
+<img width="844" alt="Ảnh màn hình 2024-11-05 lúc 20 39 37" src="https://github.com/user-attachments/assets/8b020961-eb60-4240-80b6-40b29fe53a05">
+<img width="834" alt="Ảnh màn hình 2024-11-05 lúc 20 41 13" src="https://github.com/user-attachments/assets/6b7f713e-60f3-4a07-8d1f-826104110e74">
+<img width="849" alt="Ảnh màn hình 2024-11-05 lúc 20 41 57" src="https://github.com/user-attachments/assets/2dbcd95a-1a18-4c1c-a588-688aa5a0b4cb">
+<img width="679" alt="Ảnh màn hình 2024-11-05 lúc 20 42 15" src="https://github.com/user-attachments/assets/f085b114-c952-48b3-96be-4d8d5588afaf">
