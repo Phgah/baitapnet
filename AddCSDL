@@ -1,0 +1,24 @@
+-- Thêm dữ liệu vào bảng Sản phẩm
+INSERT INTO SanPham (TenSP, Gia, HangSX) 
+VALUES 
+('iPhone 14', 25000000, 'Apple'),
+('Galaxy S23', 20000000, 'Samsung'),
+('Xiaomi 13', 15000000, 'Xiaomi');
+
+-- Thêm dữ liệu vào bảng Khách hàng
+INSERT INTO KhachHang (TenKH, DiaChi, SDT)
+VALUES 
+('Nguyen Van A', 'Hanoi', '0901234567'),
+('Tran Thi B', 'Ho Chi Minh', '0912345678');
+
+-- Thêm dữ liệu vào bảng Đơn hàng
+INSERT INTO DonHang (KhachHangId, SanPhamId, SoLuong, NgayMua)
+VALUES 
+(1, 1, 2, '2024-11-15'),
+(2, 2, 1, '2024-11-16');
+
+-- Thêm dữ liệu vào bảng Người dùng
+INSERT INTO NguoiDung (TenDangNhap, MatKhau)
+VALUES 
+('admin', '123456'),
+('user', 'user123');
