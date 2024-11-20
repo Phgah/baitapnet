@@ -1,0 +1,39 @@
+CREATE DATABASE MobileShop;
+GO
+
+USE MobileShop;
+GO
+
+-- Bảng Sản phẩm
+CREATE TABLE SanPham (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    TenSP NVARCHAR(100) NOT NULL,
+    Gia DECIMAL(18,2) NOT NULL,
+    HangSX NVARCHAR(50) NOT NULL
+);
+
+-- Bảng Khách hàng
+CREATE TABLE KhachHang (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    TenKH NVARCHAR(100) NOT NULL,
+    DiaChi NVARCHAR(200),
+    SDT NVARCHAR(15) NOT NULL
+);
+
+-- Bảng Đơn hàng
+CREATE TABLE DonHang (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    KhachHangId INT NOT NULL,
+    SanPhamId INT NOT NULL,
+    SoLuong INT NOT NULL,
+    NgayMua DATE NOT NULL,
+    FOREIGN KEY (KhachHangId) REFERENCES KhachHang(Id),
+    FOREIGN KEY (SanPhamId) REFERENCES SanPham(Id)
+);
+
+-- Bảng Người dùng
+CREATE TABLE NguoiDung (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    TenDangNhap NVARCHAR(50) NOT NULL UNIQUE,
+    MatKhau NVARCHAR(100) NOT NULL
+);
